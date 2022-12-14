@@ -91,7 +91,27 @@ Contexto-Nosso servidor encontra-se em uma única instância e que já está no 
 1. Cada empresa possui um acesso e os pacientes HOJE não acessam.
 2. Cada ação no app representa 5 consultas.
 3. O sistema de cache foi implantado no último mês para algumas partes do produto.
->
+
+
+### Como diagnosticar e apresentar o que poderia ser feito
+
+- Levantamento de métricas dos próprios relatórios de monitoramento da AWS para identificar potenciais picos e smells de limites de recursos
+- Logs nos pontos de conexão com o banco de dados para identificar potenciais ofensores a conexão com o banco e dados
+- Verficiar se as configurações com o banco estão otimizadas
+ - Exemplo: o parâmetro de configuração do número máximo de conexões está otimizado?
+- Compreender quais recursos são utilizados e quais seus limites
+ - Se atualmente já é utilizado o último nível de instância de banco e tanto a aplicação quanto as parametricações do recurso estão otimizadas, pode ser um momento de pensar em migrar para consumo de recursos mais performáticos
+- É necessário ser um banco de dados relacional? 
+
+### Indicadores de resolução do problema
+
+ - Número de conexões simultâenas ativas
+ - Rate de consumo/Recursos disponíveis
+ - Monitoramento das peças (Observabilidade)
+ - # problemas/incidentes relacionaos a conexão
+ - Tempo de resposta
+ - % de Disponibilidade da solução
+
 
 **Missão 3: Extrair insights por meio dos dados armazenados no nosso banco de dados**
 
