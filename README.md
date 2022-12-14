@@ -51,3 +51,72 @@ Banco de dados local gera problemas de atualização de dados
 Falta uma cultura de aprendizagem no time
 
 1. Como você desenvolveria o time nesses aspectos?
+
+Uma possível abordargem seria compreender quais são os fatores que possa desencadear estes pontos. Para idenificar, seguem algumas sugestões de dinâmicas e acompanhamentos
+
+ ### Health Check do time
+ 
+ - Dinâmica de curto prazo 
+ 
+ - Dinâmica para compreender, considerando grandes eixos, como por exemplo:
+  - sentimento de colaborativismo
+  - orgulho da qualidade de entrega
+  - capacidade de aprendizagem (tanto para aprender quanto para ensinar)
+  - propósito e engajamento
+  - visão estratégica
+  - ambiente e bem estar
+
+- Output: identificar potenciais pontos de evolução e criar planos de ação para evoluir
+
+### Realização de 1:1
+
+- Dinâmica de médio prazo
+
+- Realizar um acompanhamento de carreira com o time, a fim de identificar oportunidades de evolução técnica e pessoal
+  - Alinhamento de expectativas
+  - Alinhamento de roleguide, caso exista
+  - Definição de um plano de ação para criar oportunidade e evidências para evolução na carreita, tanto de forma vertical quanto horizontal
+  
+ ### PDCA
+ 
+ - Dinâmica contínua
+ 
+ - Apresentar, reforçar e acompanhar a evolução dos OKR´s/KR´s definidos durante o quarter e como está o progresso dos objetivos
+ - Mapear potenciais riscos, pedidos de apoio e celebração
+ - Oportunidade para engajar, esclarecer dúvidas e realinhar o time com a estratégia planejada
+ - Convidar o time e apresentar as propostas de objetivos para os próximos quarters
+ 
+### Qualidade 
+
+- Possuir ambientes de teste/homologação
+- Realizar a segregação para validação das features e também cenários e hipóteses de forma controlada
+- Possuir gates de inspeção de qualidade de código, como Sonarqube, por exemplo
+- Definir gates de cobertura de código e cenários de testes para aplicar como DOD das features/histórias entregues
+- Definição de templates de code review com um padrão de issue a ser seguido, definindo pontos necessários como evidências para abertura de PR/MR
+
+### Interoperabilidade
+
+- Mapear quais os pontos de conexão ou potenciais oportunidades para comunicação entre domínios que não se conversam
+- EDA (Arquitetura Orientada a Eventos) resolveria este tipo de problema? Qual o nível da falta de comunicação?
+
+### Otimização e consistência dos dados
+
+- Aplicar prática de fail-fast
+  - Adicionar lógicas de validação no app pode onerar o tamanho/build do projeto?
+    - Uma possibilidade é usar BFF (Backend For Frontend) para validações em um middleware entre o front/canal e o servidor/API
+- Garantir também as consistências no back-end, pois esta responsabilidade deve e precisa ser compartilhada (low trust)
+
+
+### Aprendizagem contínua
+
+- Apresentar proposta e dinâmicas de lifelong learning com time
+- Embasamento a partir da aprendizagem significativa
+- Tech Drops para compartilhamento e repasse de conhecimento entre o time
+  - Incentivo a participação de eventos dentro da empresa e na comunidade
+- Proposta de geração de conhecimento com bonificações
+  - Gamefication?
+  - Brindes?
+  - Cursos?
+  - Certificações?
+- Buddy/mentoria interna
+  - Necessário avaliar pares de papel
