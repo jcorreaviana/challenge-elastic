@@ -128,12 +128,12 @@ Uma possível abordargem seria compreender quais são os fatores que possa desen
  - Dinâmica de curto prazo 
  
  - Dinâmica para compreender, considerando grandes eixos, como por exemplo:
-  - sentimento de colaborativismo
-  - orgulho da qualidade de entrega
-  - capacidade de aprendizagem (tanto para aprender quanto para ensinar)
-  - propósito e engajamento
-  - visão estratégica
-  - ambiente e bem estar
+  - Sentimento de colaborativismo
+  - Orgulho da qualidade de entrega
+  - Capacidade de aprendizagem (tanto para aprender quanto para ensinar)
+  - Propósito e engajamento
+  - Visão estratégica
+  - Ambiente e bem estar
 
 - Output: identificar potenciais pontos de evolução e criar planos de ação para evoluir
 
