@@ -123,6 +123,31 @@ Gostaríamos de mapear o comportamento do cliente, verificar correlações e tir
 
 1. O que você faria para que as áreas conseguissem tirar insights dentro do que a gente tem? 
 
+### Mineração dos Dados
+
+Para realização da extratificação e transformação dos dados que atualmente são persistidos
+
+#### Sobre o Processo
+
+- Identificar quais são as bases de dados existentes
+- Utilização de alguma ferramenta para ETL (Extrair, Transformar e Carregar), como o AWS GLue
+
+#### Sobre a estratégia de negócio
+
+- Levantar e identificar quais perguntas gostaria de ser respondidas a através dos dados
+- Compreender como e quais dados são persistidos atualmente
+- Definir KPI´s para responder as dúvidas de negócio
+
+#### Sobre a visualização
+- Identificar qual a melhor ferramenta de visualização de dados
+ - Exportar e usar alguma planilha dinâmica no Excel, por exemplo?
+ - Integrar com as Planilhas do Google?
+ - Poderia ser utilizada alguma ferramenta, como o Superset ou Metabase
+
+#### A longo Prazo
+
+- Analisar a possibilidade de evolur a arquitetura do produto 
+
 **Missão 4: Desenvolvimento técnico dos liderados**
 
 **Contexto:** 
