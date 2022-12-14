@@ -147,6 +147,10 @@ Para realização da extratificação e transformação dos dados que atualmente
 #### A longo Prazo
 
 - Analisar a possibilidade de evolur a arquitetura do produto 
+ - Possibilita o stream destes eventos já de forma padronizada, sem necessidade de grandes tratamentos
+- Criar a cultura de Analytics By Design 
+ - Pensar no produto já com as perguntas a serem respondidas para drivar como constuir e modelar a solução e eventos
+  - Definir as KPI´s
 
 **Missão 4: Desenvolvimento técnico dos liderados**
 
