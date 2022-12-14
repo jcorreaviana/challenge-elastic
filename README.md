@@ -108,7 +108,7 @@ Contexto-Nosso servidor encontra-se em uma única instância e que já está no 
  - Número de conexões simultâenas ativas
  - Rate de consumo/Recursos disponíveis
  - Monitoramento das peças (Observabilidade)
- - # problemas/incidentes relacionaos a conexão
+ - número de problemas/incidentes relacionaos a conexão
  - Tempo de resposta
  - % de Disponibilidade da solução
 
