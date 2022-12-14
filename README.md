@@ -8,6 +8,75 @@ Desafio Head Tech
 2. O que você observaria na revisão do código para encontrar mais informações para garantir a solução completa do problema?
 3. Como você faria para resolver esse problema no curto, médio e longo prazo?
 
+### Contexto
+
+- Não possuo um background nas stacks utilizadas, porém alguns pontos que poderia levantar e que poderiam ser eventuais pontos de sugestão:
+ - Conversões de tipos de dados sem tratativas
+  - Estas conversões podem gerar parses incorretos e que podem fazer com que os dados não sejam armazenados ou transformados da forma correta
+  - Consistências com validadores: criação de classes auxiliares para validar consistências de dados trafegados, exemplo:
+   - Campos obrigatórios
+   - Range de valores
+   - Padrão de datas
+   - Unidades de peso
+
+#### Exemplo de conversão
+``` javascript
+	EXECUCAO_PESOMAX: parseFloat(
+					parseFloat(payload.EXECUCAO_PESOMAX)?.toFixed(2),
+				)
+```
+
+#### Exemplo de potencial dependência encadeada
+``` javascript
+			EXECUCAO_EXECMAX: parseFloat(payload.EXECUCAO_EXECMAX),
+			EXECUCAO_EXECMED: EXECUCAO_EXECMED,
+			EXECUCAO_EXECMIN: EXECUCAO_DADOS[EXECUCAO_DADOS.length - 1].VALOR
+```
+
+- Parâmetros estáticos na aplicação
+ - Faz sentido utilizar alguma solução para configurar os parâmetros de maneira mais dinâmica na aplicação, como um consul, por exemplo?
+  - Benefício: flexibilidade e facilidade de ajustes, sem redeploys ou rebuilds de aplicação
+  - Tradeoff: validação recuperada sempre no backend
+  
+  ``` javascript
+						<TXT
+							y={-metrics.ms(5)}
+							x={metrics.wp('63')}
+							stroke={colors.info}
+							fontSize={metrics.wp('3%')}>
+							{parseFloat(force_option_min)} kg
+						</TXT>
+
+```
+
+### Recomendações
+
+#### Curto Prazo
+
+- Aplicar validadores e condições de validação dos valores para validar que realmente estão sendo recebidos
+- Realizar testes e2e para garantir que todos os dados preenchidos estão sendo recebidos
+ - Criação de dados stubs/mocks poderiam ser utilizados
+- Verificar se existem constraints definidas no banco de dados para evitar ou realizar alguma validação
+
+#### Médio Prazo
+
+- Identificar se existem cenários de testes definidos e que validam as subidas em produção
+- Realização de testes unitários para validação das consistências e cenários de persistência dos dados
+- Identificar quais são os impactos atuais nos registros já existentes que possam ter sido persistidos
+
+#### Longo Prazo
+
+- Revisitar o modelo de dados e verificar se ele possui um bom modelo. Caso necesário pensar em uma proposta de modelagem
+ - Pode demandar migração e tratamento dos dados (avaliar como poderia ser tratado o histórico)
+- Analisar se a arquitetura suporta as tratativas de dados e onde seria melhor manter estas validações
+- Monitoramento da aplicação
+ - Métricas de aplicação
+ - Observabilidade do ambiente e das aplicações
+- Garantir que as tratativas das exceções sejam implementadas e validadas amigavelmente (evitar erros subirem para o cliente sem tratativas)
+
+ 
+
+
 **Missão 2 : Escalar a solução a partir da capacidade do servidor  para suportar milhões de usuários simultaneamente.** 
 
 Falhas por falta de capacidade do servidor: Tempo de requisição alto, falha nas requisições, demora na emissão de relatório e perda de informações. 
