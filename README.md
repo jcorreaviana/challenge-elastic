@@ -74,9 +74,6 @@ Desafio Head Tech
  - Observabilidade do ambiente e das aplicações
 - Garantir que as tratativas das exceções sejam implementadas e validadas amigavelmente (evitar erros subirem para o cliente sem tratativas)
 
- 
-
-
 **Missão 2 : Escalar a solução a partir da capacidade do servidor  para suportar milhões de usuários simultaneamente.** 
 
 Falhas por falta de capacidade do servidor: Tempo de requisição alto, falha nas requisições, demora na emissão de relatório e perda de informações. 
@@ -111,6 +108,13 @@ Contexto-Nosso servidor encontra-se em uma única instância e que já está no 
  - Número de problemas/incidentes relacionaos a conexão
  - Tempo de resposta
  - % de Disponibilidade da solução
+
+
+### Sobre o Cache
+
+- Avaliar se a aplicação dele surtiu efeito positivo
+- Verificar se existem outras jornadas que podem aplicar cache, avaliando volatilidade dos dados
+- Pensar também se faz sentido ralizar algum ajuste no cache, como ttl e também verificar como está sendo a manutenção dos dados cacheados
 
 
 **Missão 3: Extrair insights por meio dos dados armazenados no nosso banco de dados**
