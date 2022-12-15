@@ -116,6 +116,8 @@ Contexto-Nosso servidor encontra-se em uma única instância e que já está no 
 - Verificar se existem outras jornadas que podem aplicar cache, avaliando volatilidade dos dados
 - Pensar também se faz sentido ralizar algum ajuste no cache, como ttl e também verificar como está sendo a manutenção dos dados cacheados
 
+![draft_proposta](draft.png "Proposta")
+
 
 **Missão 3: Extrair insights por meio dos dados armazenados no nosso banco de dados**
 
