@@ -23,8 +23,7 @@ jobs:
           PARENT_URL_PROJECT_REPO: ${{ secrets.PARENT_URL_PROJECT_REPO }}
         run: |
           PARENT_ISSUE_NUMBER=${{ steps.extract.outputs.parent_issue_number }}
-          # Defina o repositório de origem (ex: org/repo-privado)
-          PARENT_REPO= $PARENT_URL_PROJECT_REPO
+          PARENT_REPO="${PARENT_URL_PROJECT_REPO}"
           LABEL_TO_REMOVE="pronto-para-publicar"
           curl -X DELETE \
             -H "Authorization: Bearer $GH_TOKEN" \
