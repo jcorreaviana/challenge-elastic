@@ -1,0 +1,32 @@
+name: Remover label da parent issue ao fechar issue pública
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  remove-label-from-parent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extrair parent issue do corpo
+        id: extract
+        run: |
+          BODY="${{ github.event.issue.body }}"
+          # Extrai o número da parent issue do padrão "_Parent issue: [#123](...)_"
+          PARENT_ISSUE_NUMBER=$(echo "$BODY" | grep -oP '_Parent issue: \[#\K[0-9]+')
+          echo "parent_issue_number=$PARENT_ISSUE_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Remover label da parent issue
+        if: steps.extract.outputs.parent_issue_number != ''
+        env:
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_PUBLIC_ROADMAP }}
+          PARENT_URL_PROJECT_REPO: ${{ secrets.PARENT_URL_PROJECT_REPO }}
+        run: |
+          PARENT_ISSUE_NUMBER=${{ steps.extract.outputs.parent_issue_number }}
+          # Defina o repositório de origem (ex: org/repo-privado)
+          PARENT_REPO= $PARENT_URL_PROJECT_REPO
+          LABEL_TO_REMOVE="pronto-para-publicar"
+          curl -X DELETE \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$PARENT_REPO/issues/$PARENT_ISSUE_NUMBER/labels/$LABEL_TO_REMOVE"
