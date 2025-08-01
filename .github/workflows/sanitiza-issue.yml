@@ -11,17 +11,16 @@ jobs:
       - name: Extrair parent issue do corpo
         id: extract
         run: |
-          set -x
-          BODY="${{ github.event.issue.body }}"
           echo "Corpo da issue:"
-          echo "$BODY"
+          echo "${{ github.event.issue.body }}"
+          BODY="${{ github.event.issue.body }}"
           # Extrai o número da parent issue do padrão "_Parent issue: [#123](...)_"
           PARENT_ISSUE_NUMBER=$(echo "$BODY" | grep -oP '_Parent issue: \[#\K[0-9]+')
+          echo "Número extraído: $PARENT_ISSUE_NUMBER"
           if [ -z "$PARENT_ISSUE_NUMBER" ]; then
             echo "::error::Não foi possível extrair o número da parent issue."
             exit 1
           fi
-          echo "Número da parent issue extraído: $PARENT_ISSUE_NUMBER"
           echo "parent_issue_number=$PARENT_ISSUE_NUMBER" >> $GITHUB_OUTPUT
 
       - name: Remover label da parent issue
@@ -30,41 +29,14 @@ jobs:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_PUBLIC_ROADMAP }}
           PARENT_URL_PROJECT_REPO: ${{ secrets.PARENT_URL_PROJECT_REPO }}
         run: |
-          set -x
+          set -e
           PARENT_ISSUE_NUMBER="${{ steps.extract.outputs.parent_issue_number }}"
           PARENT_REPO="${PARENT_URL_PROJECT_REPO}"
           LABEL_TO_REMOVE="pronto-para-publicar"
-
           echo "Repositório alvo: $PARENT_REPO"
           echo "Issue alvo: $PARENT_ISSUE_NUMBER"
           echo "Label a remover: $LABEL_TO_REMOVE"
-
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::error::GH_TOKEN não definido"
-            exit 1
-          fi
-          if [ -z "$PARENT_REPO" ]; then
-            echo "::error::PARENT_REPO não definido"
-            exit 1
-          fi
-          if [ -z "$PARENT_ISSUE_NUMBER" ]; then
-            echo "::error::PARENT_ISSUE_NUMBER não definido"
-            exit 1
-          fi
-
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}\n" -X DELETE \
+          curl -v -X DELETE \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/$PARENT_REPO/issues/$PARENT_ISSUE_NUMBER/labels/$LABEL_TO_REMOVE")
-
-          HTTP_STATUS=$(echo "$RESPONSE" | grep HTTP_STATUS | cut -d':' -f2)
-          BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')
-
-          echo "Status HTTP da requisição: $HTTP_STATUS"
-          echo "Resposta da API:"
-          echo "$BODY"
-
-          if [ "$HTTP_STATUS" -ne 200 ] && [ "$HTTP_STATUS" -ne 204 ]; then
-            echo "::error::Falha ao remover label. Status: $HTTP_STATUS"
-            exit 1
-          fi
+            "https://api.github.com/repos/$PARENT_REPO/issues/$PARENT_ISSUE_NUMBER/labels/$LABEL_TO_REMOVE"
