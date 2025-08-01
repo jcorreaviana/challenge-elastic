@@ -20,10 +20,11 @@ jobs:
         if: steps.extract.outputs.parent_issue_number != ''
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN_PUBLIC_ROADMAP }}
+          PARENT_URL_PROJECT_REPO: ${{ secrets.PARENT_URL_PROJECT_REPO }}
         run: |
           PARENT_ISSUE_NUMBER=${{ steps.extract.outputs.parent_issue_number }}
           # Defina o repositório de origem (ex: org/repo-privado)
-          PARENT_REPO="https://github.com/jcorreaviana/user-history-backlog"
+          PARENT_REPO= $PARENT_URL_PROJECT_REPO
           LABEL_TO_REMOVE="pronto-para-publicar"
           curl -X DELETE \
             -H "Authorization: Bearer $GH_TOKEN" \
